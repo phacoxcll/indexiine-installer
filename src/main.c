@@ -180,7 +180,7 @@ int Menu_Main(void)
 	int mountsdres = mount_sd_fat("sd");
 	if (mountsdres < 0)
 	{
-		console_printf(1, "Error mounting sd: %i\n", mountsdres);
+		console_printf(1, "Error montando sd: %i\n", mountsdres);
 		sleep(2);
 		return 0;
 	}
@@ -190,7 +190,7 @@ int Menu_Main(void)
 		res = MCPHookOpen();
 	if (res < 0)
 	{
-		console_printf(1, "Doing IOSU Exploit...");
+		console_printf(1, "Iniciando IOSU Exploit...");
 		*(volatile unsigned int*)0xF5E70000 = wupserver_bin_len;
 		memcpy((void*)0xF5E70020, &wupserver_bin, wupserver_bin_len);
 		DCStoreRange((void*)0xF5E70000, wupserver_bin_len + 0x40);
@@ -198,16 +198,16 @@ int Menu_Main(void)
 		//done with iosu exploit, take over mcp
 		if(MCPHookOpen() < 0)
 		{
-			console_printf(1, "MCP hook could not be opened!");
+			console_printf(1, "MCP hook No se pudo abrir!");
 			goto exit;
 		}
-		console_printf(1, "Done doing IOSU Exploit!");
+		console_printf(1, "IOSU Exploit iniciado correctamente!");
 	}
 
 	int fsaFd = IOSUHAX_FSA_Open();
 	if(fsaFd < 0)
 	{
-		console_printf(1, "IOSUHAX_FSA_Open failed: %i\n", fsaFd);
+		console_printf(1, "IOSUHAX_FSA_Open fallo: %i\n", fsaFd);
 		sleep(2);
 		return 0;
 	}
@@ -215,7 +215,7 @@ int Menu_Main(void)
 	int mountres = mount_fs("dev", fsaFd, NULL, MLC_MOUNT_PATH);
 	if(mountres < 0)
 	{
-		console_printf(1, "%i Mount of %s failed", mountres, MLC_MOUNT_PATH);
+		console_printf(1, "%i Montaje de %s fallo", mountres, MLC_MOUNT_PATH);
 		sleep(5);
 		return 0;
 	}
@@ -230,7 +230,7 @@ int Menu_Main(void)
 
 	if (region == Undetected)
 	{
-		console_printf(1, "Error detecting Region!");
+		console_printf(1, "Error detectando Region!");
 		sleep(2);
 		return 0;
 	}
@@ -241,16 +241,19 @@ int Menu_Main(void)
 	OSScreenClearBufferEx(0, 0);
 	OSScreenClearBufferEx(1, 0);
 
-	console_print_pos(0, 0, "-----------------------------------------");
-	console_print_pos(0, 1, "Indexiine Installer v2 by GaryOderNichts");
-	console_print_pos(0, 2, "Indexiine by Jonhyjp");
-	console_print_pos(0, 3, "Detected Region: %s", regionStrings[region]);
-	console_print_pos(0, 4, "-----------------------------------------");
+	console_print_pos(0, 0, "---------------------------------------------------");
+	console_print_pos(0, 1, "Traducido por Panda395 (CONTROL TOTAL)");
+	console_print_pos(0, 2, "---------------------------------------------------");
+    console_print_pos(0, 3, "Indexiine Installer v2 por GaryOderNichts");
+	console_print_pos(0, 4, "Indexiine por Jonhyjp");
+	console_print_pos(0, 5, "---------------------------------------------------");
+	console_print_pos(0, 6, "Region Detectada: %s", regionStrings[region]);
+	console_print_pos(0, 7, "---------------------------------------------------");
 
-	console_print_pos(0, 6, "Press A to backup and replace index.html");
-	console_print_pos(0, 7, "Press B to restore index.html");
+	console_print_pos(0, 9, "Boton A: Hacer backup y reemplazar el index.html");
+	console_print_pos(0, 10, "Boton B: Restaurar el index.html");
 
-	console_print_pos(0, 9, "Press HOME to exit");
+	console_print_pos(0, 12, "Boton HOME: Salir");
 
 	// Flip buffers
 	OSScreenFlipBuffersEx(0);
@@ -296,12 +299,12 @@ int Menu_Main(void)
 			} 
 			else
 			{
-				console_printf(1, "Error copying index.html to %s", indexpath);
+				console_printf(1, "Error copiando el index.html a %s", indexpath);
 				sleep(4);
 				break;
 			}
 			
-			console_printf(1, "Successfully installed Indexiine!");
+			console_printf(1, "Indexiine se ha instalado correctamente!");
 			sleep(4);
 			break;
 		}
@@ -314,7 +317,7 @@ int Menu_Main(void)
 				// chmod the file
 				chmodSingle(fsaFd, indexpath, INDEX_MODE);
 
-				console_printf(1, "Successfully restored index.html");
+				console_printf(1, "El index.html fue restaurado correctamente");
 			}
 
 			sleep(4);
@@ -329,7 +332,7 @@ int Menu_Main(void)
 	}
 	exit: 
 	
-	console_printf(1, "Exiting...");
+	console_printf(1, "Saliendo...");
 
 	for(int i = 0; i < MAX_CONSOLE_LINES_TV; i++)
 	{
