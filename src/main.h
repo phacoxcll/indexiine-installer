@@ -13,8 +13,8 @@
 
 #define INDEX_PATH "/content/pages/index.html"
 
-#define INDEX_BACKUP_PATH "sd:/wiiu/apps/indexiine-installer/backup-index.html"
-#define INDEXIINE_INDEX_PATH "sd:/wiiu/apps/indexiine-installer/index.html"
+#define INDEX_BACKUP_PATH "sd:/wiiu/apps/indexiine-mod-installer/backup-index.html"
+#define INDEXIINE_INDEX_PATH "sd:/wiiu/apps/indexiine-mod-installer/index.html"
 
 #define INDEX_MODE 0x644
 
