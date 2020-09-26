@@ -242,15 +242,20 @@ int Menu_Main(void)
 	OSScreenClearBufferEx(1, 0);
 
 	console_print_pos(0, 0, "-----------------------------------------");
-	console_print_pos(0, 1, "Indexiine Installer v2 by GaryOderNichts");
-	console_print_pos(0, 2, "Indexiine by Jonhyjp");
-	console_print_pos(0, 3, "Detected Region: %s", regionStrings[region]);
-	console_print_pos(0, 4, "-----------------------------------------");
+	console_print_pos(0, 1, "Indexiine Mod Installer");
+	console_print_pos(0, 2, "Modified by Panda395 (CONTROL TOTAL)");
+	console_print_pos(0, 3, "-----------------------------------------");
+    console_print_pos(0, 4, "Indexiine Installer v2 by GaryOderNichts");
+	console_print_pos(0, 5, "Indexiine by Jonhyjp");
+	console_print_pos(0, 6, "Indexiine Mod by Carlos Nu");
+	console_print_pos(0, 7, "-----------------------------------------");
+	console_print_pos(0, 8, "Detected Region: %s", regionStrings[region]);
+	console_print_pos(0, 9, "-----------------------------------------");
 
-	console_print_pos(0, 6, "Press A to backup and replace index.html");
-	console_print_pos(0, 7, "Press B to restore index.html");
+	console_print_pos(0, 11, "Press A to backup and replace index.html");
+	console_print_pos(0, 12, "Press B to restore index.html");
 
-	console_print_pos(0, 9, "Press HOME to exit");
+	console_print_pos(0, 14, "Press HOME to exit");
 
 	// Flip buffers
 	OSScreenFlipBuffersEx(0);
@@ -301,7 +306,7 @@ int Menu_Main(void)
 				break;
 			}
 			
-			console_printf(1, "Successfully installed Indexiine!");
+			console_printf(1, "Successfully installed Indexiine Mod!");
 			sleep(4);
 			break;
 		}
