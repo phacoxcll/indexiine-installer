@@ -9,10 +9,11 @@ endif
 ifeq ($(strip $(DEVKITPRO)),)
 $(error "Please set DEVKITPRO in your environment. export DEVKITPRO=<path to>devkitPRO")
 endif
-export PATH			:=	$(DEVKITPPC)/bin:$(PORTLIBS)/bin:$(PATH)
+export PATH			:=	$(DEVKITPPC)/bin:$(PORTLIBS_PPC)/bin:$(PORTLIBS_WIIU)/bin:$(PATH)
 export LIBOGC_INC	:=	$(DEVKITPRO)/libogc/include
 export LIBOGC_LIB	:=	$(DEVKITPRO)/libogc/lib/wii
-export PORTLIBS		:=	$(DEVKITPRO)/portlibs/ppc
+export PORTLIBS_PPC		:=	$(DEVKITPRO)/portlibs/ppc
+export PORTLIBS_WIIU		:=	$(DEVKITPRO)/portlibs/wiiu
 
 PREFIX	:=	powerpc-eabi-
 
@@ -109,13 +110,14 @@ export OFILES	:=	$(CPPFILES:.cpp=.o) $(CFILES:.c=.o) \
 export INCLUDE	:=	$(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 					-I$(CURDIR)/$(BUILD) -I$(LIBOGC_INC) \
-					-I$(PORTLIBS)/include -I$(PORTLIBS)/include/freetype2
+					-I$(PORTLIBS_PPC)/include -I$(PORTLIBS_PPC)/include/freetype2\
+					-I$(PORTLIBS_WIIU)/include
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
 #---------------------------------------------------------------------------------
 export LIBPATHS	:=	$(foreach dir,$(LIBDIRS),-L$(dir)/lib) \
-					-L$(LIBOGC_LIB) -L$(PORTLIBS)/lib
+					-L$(LIBOGC_LIB) -L$(PORTLIBS_PPC)/lib -L$(PORTLIBS_WIIU)/lib
 
 export OUTPUT	:=	$(CURDIR)/$(TARGET)
 .PHONY: $(BUILD) clean install
